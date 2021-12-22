@@ -82,8 +82,6 @@ int main() {
 const int n = 20;
 
 void solve() {
-    // ll grid[101][101][101];
-    // memset(grid, 0, sizeof(grid));
     map<iii, bool> grid;
 
     FOR(i, n) {
@@ -93,31 +91,9 @@ void solve() {
         int x1, x2, y1, y2, z1, z2;
         cin >> x1 >> x2 >> y1 >> y2 >> z1 >> z2;
 
-        // x1 += 50;
-        // x2 += 50;
-        // y1 += 50;
-        // y2 += 50;
-        // z1 += 50;
-        // z2 += 50;
-        // x1 = clamp(x1, -50, 50);
-        // x2 = clamp(x2, -50, 50);
-        // y1 = clamp(y1, -50, 50);
-        // y2 = clamp(y2, -50, 50);
-        // z1 = clamp(z1, -50, 50);
-        // z2 = clamp(z2, -50, 50);
-
-        // debug(x1);
-        // debug(x1);
-        // debug(x2);
-        // debug(y1);
-        // debug(y2);
-        // debug(z1);
-        // debug(z2);
-
         for (int x = x1; x <= x2; x++) {
             for (int y = y1; y <= y2; y++) {
                 for (int z = z1; z <= z2; z++) {
-                    // grid[x][y][z] = on;
                     grid[MT(x, y, z)] = on;
                 }
             }
@@ -129,12 +105,6 @@ void solve() {
         for (int y = -50; y <= 50; y++)
             for (int z = -50; z <= 50; z++)
                 ans += grid[MT(x, y, z)];
-
-    // FOR(x, 101)
-    //     FOR(y, 101)
-    //         FOR(z, 101)
-    //             ans += grid[MT(x, y, z)];
-    //             // ans += grid[x][y][z];
 
     debug(ans);
 }

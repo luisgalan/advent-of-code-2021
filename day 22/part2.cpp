@@ -111,10 +111,6 @@ void solve() {
         sety.insert(c.y2);
         setz.insert(c.z2);
 
-        setx.insert(c.x2 + 1);
-        sety.insert(c.y2 + 1);
-        setz.insert(c.z2 + 1);
-
         cuboids[i] = c;
         is_on[i] = on;
     }
