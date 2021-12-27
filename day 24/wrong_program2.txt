@@ -1,0 +1,72 @@
+z bliver IKKE altid divideret med 1.
+nogle gang bliver den divideret med 26.
+
+vi skal lige dobbelttjekke konstanterne.
+
+a = [const array of size 14], a_i = 1 v a_i = 26
+b = [const array of size 14], can be negative
+c = [const array of size 14], always positive
+
+for i in range(14):
+    w = input()
+    x1 = 0
+    x2 = x1 + z0
+    x3 = x2 % 26
+    z1 = z0 / a_i
+    x4 = b_i + x3
+    x5 = (x4 == w)
+    x6 = (x5 == 0)
+    y1 = 0
+    y2 = y1 + 25
+    x7 = y2 * x6
+    y3 = y2 + 1
+    z2 = z1 * y3
+    y4 = 0
+    y5 = y4 + w
+    y6 = y5 + c_i
+    y7 = y6 * x7
+    z0 = z2 + y7
+
+-----------------------------------------------
+
+a = [const array of size 14], a_i = 1 v a_i = 26
+b = [const array of size 14], can be negative
+c = [const array of size 14], always positive
+
+for i in range(14):
+    w = input()
+    x4 = b_i + (z0 % 26)
+    x7 = 25 * (x4 != w)
+    z2 = (z0 / a_i) * 26
+    z0 = z2 + ((w + c_i) * x7)
+
+-----------------------------------------------
+
+a = [const array of size 14], a_i = 1 v a_i = 26
+b = [const array of size 14], can be negative
+c = [const array of size 14], always positive
+
+for i in range(14):
+    w = input()
+    x = (b_i + (z0 % 26) != w)
+    z' = ((z / a_i) * 26) + ((w + c_i) * (25 * x))
+
+----------------------------------------------
+
+
+x = (b_i + (z0 % 26) != w)
+z' = (z / a_i) * 26 + (w + c_i) * (25 * x)
+
+
+da w > 0 og c_i > 0 skal x == 0 for at z' bliver 0
+
+vi har dog også at z' nogle gange bliver divideret med 26
+
+hvis z < 26 når vi dividerer med 26 så bliver z = 0, og så er vi fino
+MEN: z bliver ganget med 26 lige med det samme!
+dvs vi ikke kan "accumulate" når vi dividerer med 26
+
+vi kan sikkert lave rekursiv backtracking
+vi kører bare løsninger igennem, og hvis vi på et hvilket som
+helst tidspunkt får z >= 26 så er løsningen invalid og vi backtracker
+

@@ -1,0 +1,82 @@
+a = [const array of length 14]
+b = [const array of length 14]
+
+z = 0
+
+for i in 14:
+    w = input()
+    x = z % 26 + a_i
+    x = (x == w) == 0   <=>   x = (x != w)
+    y = (25 * x) + 1
+    z = z * y
+    y = (w + b_i) * x
+    z = z + y
+
+
+-------------------------------
+
+SSA
+
+a = [const array of length 14]
+b = [const array of length 14]
+d = [input() for i in range(14)]
+
+z0 = 0
+
+for i in 14:
+    w1 = d_i
+    x1 = (z0 % 26 + a_i) != d_i
+    y1 = (25 * x1) + 1
+    z1 = z0 * y1
+    y2 = (w1 + b_i) * x1
+    z2 = z1 + y2
+
+
+------------------------------
+
+constant propagation
+
+a = [const array of length 14]
+b = [const array of length 14]
+d = [input() for i in range(14)]
+
+z0 = 0
+
+for i in 14:
+    x1 = (z0 % 26 + a_i) != d_i
+    z2 = (z0 * ((25 * x1) + 1)) + ((d_i + b_i) * x1)
+
+
+-----------------------------
+
+
+a = [const array of length 14]
+b = [const array of length 14]
+d = [input() for i in range(14)]
+
+z0 = 0
+
+for i in 14:
+    x = (z % 26 + a_i) != d_i
+    z = z * (25 * x + 1) + x * (d_i + b_i)
+
+
+
+z = z * (25 * x + 1) + x * (d_i + b_i)
+  = z * 25 * x + z + x * d_i + x * b_i
+
+  = z + x * (z * 25 + d_i + b_i)
+
+  = z + (d_i != (z % 26 + a_i)) * (z * 25 + d_i + b_i)
+
+
+Hvis vi på noget tidspunkt har z != 0, så må outputtet heller ikke have z = 0
+Vi har ved nulreglen at enten venstre eller højre parantes skal = 0 ved hvert skridt
+Og da d_i > 0 kan højre aldrig være 0, så venstre parantes it is.
+
+Da z skal være = 0 må d_i != (z % 26 + a_i) <=> d_i != a_i
+
+øhhh for at d_i != a_i skal give 0 så er koden legit bare vores a_i...
+kan det passe?
+nope har lavet en fejl et sted, a_i >= 10 så det ikke et ciffer
+

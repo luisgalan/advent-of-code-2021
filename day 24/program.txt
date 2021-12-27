@@ -1,0 +1,121 @@
+holy shit hvor er den her opgave aids
+
+a = [const array of size 14], a_i = 1 v a_i = 26
+b = [const array of size 14], can be negative
+c = [const array of size 14], always positive
+
+for i in range(14):
+    w = input()
+    x1 = 0
+    x2 = x1 + z0
+    x3 = x2 % 26
+    z1 = z0 / a_i
+    x4 = b_i + x3
+    x5 = (x4 == w)
+    x6 = (x5 == 0)
+    y1 = 0
+    y2 = y1 + 25
+    y3 = y2 * x6
+    y4 = y3 + 1
+    z2 = z1 * y4
+    y5 = 0
+    y6 = y5 + w
+    y7 = y6 + c_i
+    y8 = y7 * x6
+    z0 = z2 + y8
+
+----------------------------------------------
+
+så reducerer vi programmet for tredje gang hahahahahahahahha morsom opgave
+
+a = [const array of size 14], a_i = 1 v a_i = 26
+b = [const array of size 14], can be negative
+c = [const array of size 14], always positive
+
+for i in range(14):
+    w = input()
+    x4 = b_i + (z0 % 26)
+    x6 = (x4 != w)
+    y4 = (25 * x6) + 1
+    z2 = (z0 / a_i) * y4
+    y8 = (w + c_i) * x6
+    z0 = z2 + y8
+
+----------------------------------------------
+
+a = [const array of size 14], a_i = 1 v a_i = 26
+b = [const array of size 14], can be negative
+c = [const array of size 14], always positive
+
+for i in range(14):
+    w = input()
+    x = ((b_i + (z % 26)) != w)
+    z' = ((z / a_i) * ((25 * x) + 1)) + ((w + c_i) * x)
+
+----------------------------------------------
+
+
+x = ((b_i + (z % 26)) != w)
+z' = (z / a_i) * ((25 * x) + 1) + (w + c_i) * x
+
+
+igen har vi at w + c_i > 0
+men nu har vi flere x'ere. lad os faktorisere x ud
+
+
+z' = (z / a_i) * (25 * x) + (z / a_i) + (w + c_i) * x
+
+z' = (z / a_i) + x * ((z / a_i) * 25) + x * (w + c_i)
+
+
+
+x = ((b_i + (z % 26)) != w)
+z' = (z / a_i) + x * ((z / a_i) * 25 + w + c_i)
+
+z kan ikke være negativ (kun b_i kan være negativ), og da w + c_i > 0
+så har vi at højre term = 0 <=> x = 0
+
+hvad der er interressant er at nu har vi at divisionerne med 26 godt kan accumulate
+så vi kan ikke længere backtracke på samme måde ://
+
+evt kan vi måske brute force baglæns?
+eller lave meet in the middle (lidt øv at implementere)
+
+
+for det sidste step (z14 = 0) har vi at:
+    z13 / 26 = 0
+        => z13 < 26
+
+    højre term = 0
+        => x = 0
+        => b13 + (z13 % 26) == w
+        => b13 + z13 == w
+        => z13 - 8 == w
+        => z13 - 8 == w
+
+for det næstsidste step (z13 < 26) har vi at:
+
+
+
+
+-------------------------------------------
+
+måske kigger vi på den forkert?
+
+x = ((b_i + (z % 26)) != w)
+z' = ((z / a_i) * ((25 * x) + 1)) + x (w + c_i)
+
+
+25 * x + 1 =
+    1  hvis x == 0
+    26 hvis x == 1
+
+
+I vores input har vi at:
+a_i == 1   =>   b_i er større end et ciffer
+
+
+for det sidste step (z14 = 0) har vi at:
+    z / 26 = 0
+
+    x == 0
